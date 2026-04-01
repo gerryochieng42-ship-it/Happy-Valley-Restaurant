@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Valley Restaurant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #fff8dc;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  z-index: 1000;
+}
+
+.navbar h2 { color: #D4AF37; }
+.navbar a { color: white; margin-left: 20px; text-decoration: none; }
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+  background: url('https://images.pexels.com/photos/331990/pexels-photo-331990.jpeg') center/cover;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.hero h1, .hero p {
+  position: relative;
+  z-index: 1;
+}
+
+.hero p {
+  max-width: 700px;
+  line-height: 1.6;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.hero p strong {
+  color: #D4AF37;
+  font-weight: 600;
+}
+
+.btn {
+  padding: 12px 20px;
+  background: #D4AF37;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+/* MENU */
+.menu {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #fff5e6, #ffe4c4);
+}
+
+.menu h2 {
+  text-align: center;
+  font-size: 40px;
+  color: #8B4513;
+  margin-bottom: 20px;
+}
+
+.menu-item {
+  max-width: 700px;
+  margin: 15px auto;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.menu-btn {
+  width: 100%;
+  padding: 15px;
+  background: #8B4513;
+  color: white;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.menu-btn::after { content: "+"; }
+.menu-btn.active::after { content: "-"; }
+
+.menu-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: #fffaf0;
+}
+
+.menu-content.active {
+  max-height: 800px;
+  padding: 10px 15px;
+}
+
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px dashed #ccc;
+}
+
+/* ADD BUTTON */
+.add-btn {
+  padding: 5px 10px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* CART */
+.cart {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 300px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.cart-items {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 6px 0;
+}
+
+/* QTY CONTROLS */
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.qty button {
+  padding: 2px 6px;
+  border: none;
+  background: #8B4513;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* REMOVE */
+.remove {
+  background: red;
+  border: none;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* TOTAL */
+.cart-total {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* WHATSAPP */
+.whatsapp {
+  display: block;
+  margin-top: 10px;
+  background: #25D366;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* CONTACT */
+.contact {
+  padding: 80px 20px;
+  background: #4B2E1E;
+  color: white;
+  text-align: center;
+}
+
+input, textarea {
+  width: 80%;
+  padding: 10px;
+  margin: 8px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* MAP */
+.map-section {
+  padding: 80px 20px;
+  background: #f7e7c6;
+  text-align: center;
+}
+
+.map-container {
+  max-width: 900px;
+  margin: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+/* FOOTER */
+footer {
+  background:#4B2E1E;
+  color:#D4AF37;
+  text-align:center;
+  padding:25px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>🍽️ Happy Valley Restaurant</h2>
+  <div>
+    <a href="#menu">Menu</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Welcome to Happy Valley Restaurant</h1>
+  <p><strong>Happy Valley Restaurant</strong> offers a variety of local and international cuisines and meals.<br>
+  We pride ourself of a modern and ambient dining area within Gilgil CBD.<br>
+  If you are looking for home-made meals then <strong>Happy Valley Restaurant</strong> in Gilgil is where to eat</p>
+  <a href="#menu"><button class="btn">View Menu</button></a>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+<h2>Our Menu</h2>
+
+<!-- LIGHT DISHES -->
+<div class="menu-item">
+<button class="menu-btn">Light Dishes</button>
+<div class="menu-content">
+
+<div class="menu-row"><span>Chapati</span><span>50</span><button class="add-btn" onclick="addToCart('Chapati',50)">Add</button></div>
+<div class="menu-row"><span>Mandazi</span><span>20</span><button class="add-btn" onclick="addToCart('Mandazi',20)">Add</button></div>
+<div class="menu-row"><span>Toast</span><span>100</span><button class="add-btn" onclick="addToCart('Toast',100)">Add</button></div>
+<div class="menu-row"><span>Samosa</span><span>50</span><button class="add-btn" onclick="addToCart('Samosa',50)">Add</button></div>
+
+</div>
+</div>
+
+<!-- CHICKEN DISHES -->
+<div class="menu-item">
+<button class="menu-btn">Chicken Dishes</button>
+<div class="menu-content">
+
+<div class="menu-row"><span>Chicken Curry</span><span>550</span><button class="add-btn" onclick="addToCart('Chicken Curry',550)">Add</button></div>
+<div class="menu-row"><span>Chicken Stew</span><span>550</span><button class="add-btn" onclick="addToCart('Chicken Stew',550)">Add</button></div>
+<div class="menu-row"><span>Chicken Fry</span><span>550</span><button class="add-btn" onclick="addToCart('Chicken Fry',550)">Add</button></div>
+<div class="menu-row"><span>Chicken Kienyeji</span><span>600</span><button class="add-btn" onclick="addToCart('Chicken Kienyeji',600)">Add</button></div>
+
+</div>
+</div>
+
+<!-- BEEF DISHES -->
+<div class="menu-item">
+<button class="menu-btn">Beef Dishes</button>
+<div class="menu-content">
+
+<div class="menu-row"><span>Beef Stew</span><span>450</span><button class="add-btn" onclick="addToCart('Beef Stew',450)">Add</button></div>
+<div class="menu-row"><span>Beef Fry</span><span>450</span><button class="add-btn" onclick="addToCart('Beef Fry',450)">Add</button></div>
+<div class="menu-row"><span>Beef Curry</span><span>450</span><button class="add-btn" onclick="addToCart('Beef Curry',450)">Add</button></div>
+
+</div>
+</div>
+
+<!-- MUTTON / GOAT -->
+<div class="menu-item">
+<button class="menu-btn">Mutton / Goat Dishes</button>
+<div class="menu-content">
+
+<div class="menu-row"><span>Goat Fry</span><span>550</span><button class="add-btn" onclick="addToCart('Goat Fry',550)">Add</button></div>
+<div class="menu-row"><span>Goat Stew</span><span>550</span><button class="add-btn" onclick="addToCart('Goat Stew',550)">Add</button></div>
+<div class="menu-row"><span>Goat Biryani</span><span>550</span><button class="add-btn" onclick="addToCart('Goat Biryani',550)">Add</button></div>
+<div class="menu-row"><span>Goat Soup</span><span>150</span><button class="add-btn" onclick="addToCart('Goat Soup',150)">Add</button></div>
+
+</div>
+</div>
+
+<!-- AFRICAN DISHES -->
+<div class="menu-item">
+<button class="menu-btn">African Dishes</button>
+<div class="menu-content">
+
+<div class="menu-row"><span>Ugali</span><span>100</span><button class="add-btn" onclick="addToCart('Ugali',100)">Add</button></div>
+<div class="menu-row"><span>Rice</span><span>100</span><button class="add-btn" onclick="addToCart('Rice',100)">Add</button></div>
+<div class="menu-row"><span>Githeri</span><span>200</span><button class="add-btn" onclick="addToCart('Githeri',200)">Add</button></div>
+<div class="menu-row"><span>Mukimo</span><span>200</span><button class="add-btn" onclick="addToCart('Mukimo',200)">Add</button></div>
+<div class="menu-row"><span>Matumbo</span><span>200</span><button class="add-btn" onclick="addToCart('Matumbo',200)">Add</button></div>
+
+</div>
+</div>
+
+<!-- FISH DISHES -->
+<div class="menu-item">
+<button class="menu-btn">Fish Dishes</button>
+<div class="menu-content">
+
+<div class="menu-row"><span>Pan Fried Fish Fillet</span><span>450</span><button class="add-btn" onclick="addToCart('Pan Fried Fish Fillet',450)">Add</button></div>
+<div class="menu-row"><span>Fish Curry</span><span>450</span><button class="add-btn" onclick="addToCart('Fish Curry',450)">Add</button></div>
+<div class="menu-row"><span>Whole Tilapia</span><span>600</span><button class="add-btn" onclick="addToCart('Whole Tilapia',600)">Add</button></div>
+
+</div>
+</div>
+
+<!-- ACCOMPANIMENTS -->
+<div class="menu-item">
+<button class="menu-btn">Accompaniments</button>
+<div class="menu-content">
+
+<div class="menu-row"><span>Ugali</span><span>100</span><button class="add-btn" onclick="addToCart('Ugali',100)">Add</button></div>
+<div class="menu-row"><span>Rice</span><span>100</span><button class="add-btn" onclick="addToCart('Rice',100)">Add</button></div>
+<div class="menu-row"><span>Chapati</span><span>50</span><button class="add-btn" onclick="addToCart('Chapati',50)">Add</button></div>
+<div class="menu-row"><span>Vegetables</span><span>100</span><button class="add-btn" onclick="addToCart('Vegetables',100)">Add</button></div>
+
+</div>
+</div>
+
+</section>
+
+<!-- CART -->
+<div class="cart">
+  <h3>🛒 Cart</h3>
+  <div id="cartItems" class="cart-items"></div>
+  <div id="cartTotal" class="cart-total">Total: 0</div>
+  <a class="whatsapp" id="whatsappBtn">Order on WhatsApp</a>
+</div>
+
+<!-- MAP -->
+<section class="map-section">
+  <h2 style="color:#8B4513; margin-bottom:20px;">📍 Happy Valley Restaurant Gilgil Location</h2>
+
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps?q=Happy%20Valley%20Restaurant%20Gilgil&output=embed"
+      width="100%" 
+      height="350" 
+      style="border:0;" 
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  🍽️ Happy Valley Restaurant © 2026 | All Rights Reserved <br>
+  📍 Visit us anytime | 📞 0114855196
+</footer>
+
+<script>
+let cart = {};
+
+function addToCart(name, price){
+  if(cart[name]){
+    cart[name].qty++;
+  } else {
+    cart[name] = { price: price, qty: 1 };
+  }
+  updateCart();
+}
+
+function changeQty(name, change){
+  if(!cart[name]) return;
+  cart[name].qty += change;
+  if(cart[name].qty <= 0) delete cart[name];
+  updateCart();
+}
+
+function removeItem(name){
+  delete cart[name];
+  updateCart();
+}
+
+function updateCart(){
+  let items = document.getElementById("cartItems");
+  let total = 0;
+  items.innerHTML = "";
+
+  for(let name in cart){
+    let item = cart[name];
+    let subtotal = item.qty * item.price;
+    total += subtotal;
+
+    items.innerHTML += `
+      <div class="cart-item">
+        <span>${name} x${item.qty} - ${subtotal}</span>
+        <div class="qty">
+          <button onclick="changeQty('${name}', -1)">-</button>
+          <button onclick="changeQty('${name}', 1)">+</button>
+        </div>
+        <button class="remove" onclick="removeItem('${name}')">x</button>
+      </div>
+    `;
+  }
+
+  document.getElementById("cartTotal").innerText = "Total: " + total;
+
+  let msg = "Hello, I want to order:%0A";
+  for(let name in cart){
+    let i = cart[name];
+    msg += `- ${name} x${i.qty} (${i.price})%0A`;
+  }
+  msg += "Total: " + total;
+
+  document.getElementById("whatsappBtn").href =
+    "https://wa.me/079294605?text=" + msg;
+}
+
+// accordion (unchanged)
+document.querySelectorAll(".menu-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const content = btn.nextElementSibling;
+
+    document.querySelectorAll(".menu-content").forEach(c => {
+      if (c !== content) c.classList.remove("active");
+    });
+
+    document.querySelectorAll(".menu-btn").forEach(b => {
+      if (b !== btn) b.classList.remove("active");
+    });
+
+    content.classList.toggle("active");
+    btn.classList.toggle("active");
+  });
+});
+</script>
+
+</body>
+</html>
